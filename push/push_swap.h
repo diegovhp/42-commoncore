@@ -79,6 +79,7 @@ void		put_str(char *str);
 
 /*    Parser     */
 void		ft_parse(t_data *data, int ac, char **av);
+void		ft_parse_str(t_data *data, char *str);
 int			ft_is_valid_number(char *str);
 int			ft_is_same(t_stack *stack, int value);
 int			ft_free_atoi(char *str, t_data *data);

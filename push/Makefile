@@ -19,6 +19,7 @@ SRCS		= stack_inits.c \
 			utils.c \
 			parse_flag.c \
 			parcers.c \
+			parse_str.c \
 			swap.c \
 			push.c \
 			rotate.c \
