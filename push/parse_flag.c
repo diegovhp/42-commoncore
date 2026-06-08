@@ -38,6 +38,21 @@ int	parser_argsvide(int ac, char **av)
 	return (1);
 }
 
+static int	ft_is_known_flag(char *str)
+{
+	if (ft_strcmp(str, "--simple") == 0)
+		return (1);
+	if (ft_strcmp(str, "--medium") == 0)
+		return (1);
+	if (ft_strcmp(str, "--complex") == 0)
+		return (1);
+	if (ft_strcmp(str, "--adaptive") == 0)
+		return (1);
+	if (ft_strcmp(str, "--bench") == 0)
+		return (1);
+	return (0);
+}
+
 char	parse_flag(int ac, char **av)
 {
 	char	flag;
@@ -47,6 +62,11 @@ char	parse_flag(int ac, char **av)
 	i = 1;
 	while (i < ac)
 	{
+		if (av[i][0] == '-' && av[i][1] == '-' && !ft_is_known_flag(av[i]))
+		{
+			write(2, "Error\n", 6);
+			exit(1);
+		}
 		if (ft_strcmp(av[i], "--simple") == 0)
 			flag = 's';
 		else if (ft_strcmp(av[i], "--medium") == 0)
