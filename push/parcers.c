@@ -83,11 +83,44 @@ int	ft_is_same(t_stack *stack, int value)
 	return (0);
 }
 
+static void	ft_parse_str(t_data *data, char *str)
+{
+	char	token[12];
+	int		i;
+	int		j;
+	int		value;
+	t_node	*node;
+
+	i = 0;
+	while (str[i])
+	{
+		while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+			i++;
+		if (!str[i])
+			break ;
+		j = 0;
+		while (str[i] && str[i] != ' ' && !(str[i] >= 9 && str[i] <= 13))
+		{
+			if (j >= 11)
+				ft_error(data);
+			token[j++] = str[i++];
+		}
+		token[j] = '\0';
+		if (!ft_is_valid_number(token))
+			ft_error(data);
+		value = ft_free_atoi(token, data);
+		if (ft_is_same(data->a, value))
+			ft_error(data);
+		node = ft_new_node(value);
+		if (!node)
+			ft_error(data);
+		ft_stack_add_bottom(data->a, node);
+	}
+}
+
 void	ft_parse(t_data *data, int ac, char **av)
 {
 	int		i;
-	int		value;
-	t_node	*node;
 
 	i = 1;
 	while (i < ac)
@@ -97,15 +130,7 @@ void	ft_parse(t_data *data, int ac, char **av)
 			i++;
 			continue ;
 		}
-		if (!ft_is_valid_number(av[i]))
-			ft_error(data);
-		value = ft_free_atoi(av[i], data);
-		if (ft_is_same(data->a, value))
-			ft_error(data);
-		node = ft_new_node(value);
-		if (!node)
-			ft_error(data);
-		ft_stack_add_bottom(data->a, node);
+		ft_parse_str(data, av[i]);
 		i++;
 	}
 }
