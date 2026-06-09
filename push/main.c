@@ -12,6 +12,12 @@
 
 #include "push_swap.h"
 
+static void	print_ops(t_bench benchmark)
+{
+	put_nbr(benchmark.total_ops);
+	write(2, "\n", 1);
+}
+
 int	main(int ac, char **av)
 {
 	t_data	*data;
@@ -21,6 +27,7 @@ int	main(int ac, char **av)
 	benchmark.flag = parse_flag(ac, av);
 	benchmark.flag_origin = benchmark.flag;
 	benchmark.bench_mode = parse_bench(ac, av);
+	benchmark.ops_mode = parse_ops(ac, av);
 	if (ac < 2)
 		return (0);
 	data = ft_new_data();
@@ -32,6 +39,8 @@ int	main(int ac, char **av)
 	push_swap_sort(data, &benchmark);
 	if (benchmark.bench_mode)
 		print_disorder(benchmark);
+	if (benchmark.ops_mode)
+		print_ops(benchmark);
 	ft_free_data(data);
 	return (0);
 }

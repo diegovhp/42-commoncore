@@ -86,6 +86,20 @@ void	print_strategy(t_bench benchmark)
 		put_str("O(n log n)\n");
 }
 
+int	parse_ops(int ac, char **av)
+{
+	int	i;
+
+	i = 1;
+	while (i < ac)
+	{
+		if (ft_strcmp(av[i], "--ops") == 0)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
 void	print_disorder(t_bench benchmark)
 {
 	int	pct;

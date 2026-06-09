@@ -55,6 +55,7 @@ typedef struct s_bench
 	char	flag_origin;
 	int		total_ops;
 	int		bench_mode;
+	int		ops_mode;
 }	t_bench;
 
 typedef struct s_rot
@@ -86,6 +87,7 @@ int			ft_free_atoi(char *str, t_data *data);
 int			parser_argsvide(int ac, char **av);
 char		parse_flag(int ac, char **av);
 int			parse_bench(int ac, char **av);
+int			parse_ops(int ac, char **av);
 void		sort_adaptive(t_bench *benchmark);
 
 /*      Memory free     */

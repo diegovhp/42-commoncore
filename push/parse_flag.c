@@ -50,6 +50,8 @@ static int	ft_is_known_flag(char *str)
 		return (1);
 	if (ft_strcmp(str, "--bench") == 0)
 		return (1);
+	if (ft_strcmp(str, "--ops") == 0)
+		return (1);
 	return (0);
 }
 
